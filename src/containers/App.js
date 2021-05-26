@@ -4,6 +4,7 @@ import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import "./App.css";
+import ErrorBoundry from "../components/ErrorBoundry";
 
 export default class App extends Component {
   constructor(props) {
@@ -37,12 +38,15 @@ export default class App extends Component {
     });
     return !robots.length ? ( // if legth !== 0
       <h1>Loading</h1>
-    ) : ( // else
+    ) : (
+      // else
       <div className="tc">
         <h1 className="f1"> RobotFriends</h1>
         <SearchBox searchChange={this.onSearchChange} />
         <Scroll>
-          <CardList robots={filteredRobots} />
+          <ErrorBoundry>
+            <CardList robots={filteredRobots} />
+          </ErrorBoundry>
         </Scroll>
       </div>
     );
