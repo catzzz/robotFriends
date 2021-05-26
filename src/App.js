@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { robots } from "./robots";
 import CardList from "./CardList";
 import SearchBox from "./SearchBox";
+import Scroll from "./Scroll";
 import "./App.css";
 
 export default class App extends Component {
@@ -33,17 +34,18 @@ export default class App extends Component {
         .toLocaleLowerCase()
         .includes(this.state.searchfield.toLocaleLowerCase());
     });
-    if(this.state.robots.length === 0){
-      return <h1>Loading</h1>
-    }else{
+    if (this.state.robots.length === 0) {
+      return <h1>Loading</h1>;
+    } else {
       return (
         <div className="tc">
           <h1 className="f1"> RobotFriends</h1>
           <SearchBox searchChange={this.onSearchChange} />
-          <CardList robots={filteredRobots} />
+          <Scroll>
+            <CardList robots={filteredRobots} />
+          </Scroll>
         </div>
       );
     }
-    
   }
 }
