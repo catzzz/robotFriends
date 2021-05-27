@@ -4,6 +4,7 @@ export default class SearchBox extends Component {
 
    
     render() {
+        console.log("SearchBox render")
         const {searchChange} = this.props;
         return (
             <div>
