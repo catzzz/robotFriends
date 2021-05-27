@@ -6,17 +6,17 @@ import Scroll from "../components/Scroll";
 import "./App.css";
 import ErrorBoundry from "../components/ErrorBoundry";
 
-export default function App() {
+export default function App(props) {
   const [robots, setRobots] = useState([]);
   const [searchfield, setSearchfield] = useState("");
   const [count, setCount] = useState(0);
-
+  
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) => {
         setRobots(users);
-        console.log(count);
+        
       }); // run effect once just like componentDidMount
   }, [count]); // Only run if count changes.
 
@@ -27,7 +27,6 @@ export default function App() {
   const addCount = () =>{
 
     setCount(count+1);
-   
   }
 
   const filteredRobots = robots.filter((robots) => {
