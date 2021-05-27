@@ -1,36 +1,31 @@
-import React, { Component } from "react";
-import { robots } from "../robots";
+import React, { useState, useEffect } from "react";
+// import { robots } from "../robots";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import "./App.css";
 import ErrorBoundry from "../components/ErrorBoundry";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      robots: [],
-      searchfield: "",
-    };
-    this.onSearchChange = this.onSearchChange.bind(this);
-  }
-  componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
+export default function App() {
+
+  useEffect(()=>{
+        fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
-      .then((users) => {
-        this.setState({ robots: users });
-      });
+      .then((users) => {setRobots(users)}); // run effect once just like componentDidMount
+      console.log(robots, searchfield);
+  },[])
+  const [robots, setRobots] = useState([]);
+  const [searchfield, setSearchfield] = useState("");
+
+  const onSearchChange = (event) => {
+    // this.setState({
+    //   searchfield: event.target.value,
+    // });
+    setSearchfield(event.target.value);
+
   }
 
-  onSearchChange(event) {
-    this.setState({
-      searchfield: event.target.value,
-    });
-    console.log(event.target.value);
-  }
-  render() {
-    const { robots, searchfield } = this.state;
+
     const filteredRobots = robots.filter((robots) => {
       return robots.name
         .toLocaleLowerCase()
@@ -42,7 +37,7 @@ export default class App extends Component {
       // else
       <div className="tc">
         <h1 className="f1"> RobotFriends</h1>
-        <SearchBox searchChange={this.onSearchChange} />
+        <SearchBox searchChange={onSearchChange} />
         <Scroll>
           <ErrorBoundry>
             <CardList robots={filteredRobots} />
@@ -50,5 +45,5 @@ export default class App extends Component {
         </Scroll>
       </div>
     );
-  }
+  
 }
