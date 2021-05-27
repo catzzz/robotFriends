@@ -1,17 +1,21 @@
 
-import { CHANGE_SEARCH_FIELD } from "./constants"
 
+import {
+  CHANGE_SEARCHFIELD,
 
-const initialState  = {
-    searchField:''
+ } from './constants';
+
+const initialStateSearch = {
+  searchField: ''
 }
 
-export const searchRobotsReducer = (state = initialState, action ={}) => {
-    switch (action.type){
-        case CHANGE_SEARCH_FIELD:
-            //return Object.assign({}, state, {searchField :action.payload }); // same as spread function below
-            return {...state, searchField: action.payload};
-        default:
-            return state;
-    }
+export const searchRobots = (state=initialStateSearch, action={}) => {
+
+  switch (action.type) {
+    case CHANGE_SEARCHFIELD:
+      return Object.assign({}, state, {searchField: action.payload})
+    default:
+      return state
+  }
 }
+
