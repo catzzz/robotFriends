@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run: echo "run npm install" # run the `echo` command
-      - run: npm install --dev
+      - run: npm install --only=dev
       - run: echo "npm test" # run the `echo` command
       - run: npm test
   
