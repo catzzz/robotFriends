@@ -20,7 +20,7 @@ jobs:
       - checkout # check out the code in the project directory
       - run: echo "Double trouble" # run the `echo` command
 
-workflow:
+workflows:
   version: 2.1
   bobby_sally:
     jobs:
