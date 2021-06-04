@@ -28,7 +28,7 @@ jobs:
   hithere:
     docker:
       - image: cimg/node:14.10.1 # the primary container, where your job's commands are run
-      
+
     steps:
       - checkout
       - run: echo "hello!!!"
@@ -40,6 +40,6 @@ workflows:
       - build
       - hithere
       - test:
-        requires:
-          - hithere
+          requires:
+            - hithere
 
