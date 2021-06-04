@@ -18,6 +18,8 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    environment:
+      - NODE_ENV: development
     steps:
       - checkout # check out the code in the project directory
       - run: echo "run npm install" # run the `echo` command
